@@ -52,35 +52,35 @@ char* fromDeci(char res[], int base, int inputNum)
 }
 
 int main(void) {
-    int pozice, soustava, result, i, pocet_cislic, pocet_mezer;
+    int position, base, result, i, numberDigits, numberSpaces;
     char res[100];
     result=1;
     while (result!=EOF){
-        pocet_cislic=0;
+        numberDigits=0;
         printf("Pozice a soustava:\n");
-        result=scanf("%d %d", &pozice, &soustava);
-        if ((result!=2) || (soustava <2) || (soustava>36) || (pozice<0)) {
+        result=scanf("%d %d", &position, &base);
+        if ((result!=2) || (base <2) || (base>36) || (position<0)) {
             printf("Nespravny vstup.\n");
         return 1;
         }
         int count=0;
         i=0;
     //printf("Zadal jsi:%d %d\n", pozice, soustava);
-        while (count<pozice){
+        while (count<position){
             i++;
-            fromDeci(res, soustava, i);
+            fromDeci(res, base, i);
             //printf("Převedené číslo %s\n", res);
             //pocet_cislic=(i==0)?1:log10(i)+1;
-            pocet_cislic=strlen(res);
+            numberDigits=strlen(res);
             //if (res=="0") {pocet_cislic=1;}
-            count=pocet_cislic+count;
+            count=numberDigits+count;
             //printf("Count %d, pozice %d\n", count, pozice);
         }
         printf("%s\n", res);
-        pocet_mezer=pocet_cislic-(count-pozice)-1; //count-pozice 0...znamená poslední číslice
+        numberSpaces=numberDigits-(count-position)-1; //count-position 0...znamená poslední číslice
         //printf("Count %d, pozice %d, pocet mezer %d, pocet cislic %d\n", count, pozice, pocet_mezer, pocet_cislic);
         i=0;
-        while (i<pocet_mezer){
+        while (i<numberSpaces){
             printf(" ");
             i++;
         }
@@ -89,3 +89,4 @@ int main(void) {
    }
     return 0;
 }
+
